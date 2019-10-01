@@ -1,0 +1,32 @@
+package ${resource.packageName}.domain.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ${resource.packageName}.domain.model.${resource.resourceClass};
+import ${resource.packageName}.domain.repository.${resource.resourceClass}Repository;
+
+@Service
+public class ${resource.resourceClass}Service {
+
+    @Autowired
+    private ${resource.resourceClass}Repository ${resource.resourceName}Repository;
+
+    public List<${resource.resourceClass}> findAll(){
+        return ${resource.resourceName}Repository.findAll();
+    }
+
+    public ${resource.resourceClass} find(${resource.idType} id){
+        return ${resource.resourceName}Repository.findById(id).orElse(null);
+    }
+
+    public ${resource.resourceClass} save(${resource.resourceClass} entity){
+        return ${resource.resourceName}Repository.save(entity);
+    }
+
+    public void delete(${resource.resourceClass} entity){
+        ${resource.resourceName}Repository.delete(entity);
+    }
+}

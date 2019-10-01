@@ -1,0 +1,10 @@
+package ${resource.packageName}.domain.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import ${resource.packageName}.domain.model.${resource.resourceClass};
+
+@Repository
+public interface ${resource.resourceClass}Repository extends JpaRepository<${resource.resourceClass}, ${resource.idType}> {
+}

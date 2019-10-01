@@ -1,0 +1,68 @@
+package ${resource.packageName}.app.controller;
+
+import java.util.List;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import ${resource.packageName}.domain.model.${resource.resourceClass};
+import ${resource.packageName}.domain.service.${resource.resourceClass}Service;
+
+@RestController
+@RequestMapping("${resource.resourceName}")
+public class ${resource.resourceClass}Controller {
+
+    @Autowired
+    private ${resource.resourceClass}Service ${resource.resourceName}Service;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<${resource.resourceClass}> findAll(){
+        return ${resource.resourceName}Service.findAll();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "{id}")
+    public ${resource.resourceClass} find(@PathVariable ${resource.idType} id){
+        return ${resource.resourceName}Service.find(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<String> create(@Validated @RequestBody ${resource.resourceClass} input){
+        ${resource.resourceName}Service.save(input);
+        return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "{id}")
+    public ResponseEntity<String> update(@PathVariable $resource.idType id, @Validated @RequestBody ${resource.resourceClass} input){
+
+        ${resource.resourceClass} entity = ${resource.resourceName}Service.find(id);
+        
+        if(Objects.isNull(entity)){
+            return ResponseEntity.badRequest().build();
+        }
+        
+        ${resource.resourceName}Service.save(input);
+        
+        return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+    public ResponseEntity<String> delete(@PathVariable $idType id){
+
+        ${resourceClass} entity = ${resourceName}Service.find(id);
+        
+        if(Objects.isNull(entity)){
+            return ResponseEntity.badRequest().build();
+        }
+
+        ${resourceName}Service.delete(entity);
+
+        return ResponseEntity.ok().build();
+    }
+}
