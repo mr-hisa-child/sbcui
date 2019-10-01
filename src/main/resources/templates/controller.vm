@@ -53,15 +53,15 @@ public class ${resource.resourceClass}Controller {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
-    public ResponseEntity<String> delete(@PathVariable $idType id){
+    public ResponseEntity<String> delete(@PathVariable $resource.idType id){
 
-        ${resourceClass} entity = ${resourceName}Service.find(id);
+        ${resource.resourceClass} entity = ${resource.resourceName}Service.find(id);
         
         if(Objects.isNull(entity)){
             return ResponseEntity.badRequest().build();
         }
 
-        ${resourceName}Service.delete(entity);
+        ${resource.resourceName}Service.delete(entity);
 
         return ResponseEntity.ok().build();
     }
